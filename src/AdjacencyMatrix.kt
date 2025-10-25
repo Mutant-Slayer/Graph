@@ -21,6 +21,15 @@ fun main() {
 
 private fun printAdjacencyMatrix(n: Int, adjacencyMatrix: List<MutableList<Int>>) {
 
+    /**
+     * Graph Adjacency List Representation
+     *
+     * Node 1 => Neighbours : 2 3
+     * Node 2 => Neighbours : 3
+     * Node 3 => Neighbours : 4
+     * Node 4 => Neighbours : 2
+     */
+
     for (i in 1..n) {
         print("Node $i => Neighbours : ")
         for (j in 1..n) {
