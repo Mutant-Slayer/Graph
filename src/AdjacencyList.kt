@@ -6,21 +6,20 @@ fun main() {
         listOf(4, 2),
         listOf(1, 3)
     )
-    val n = 5
 
-    val adjacencyMatrix = List(n) { MutableList(n) { 0 } }
+    val adjacencyList = mutableMapOf<Int, MutableList<Int>>()
 
     for (i in 0 until edgeList.size) {
         val a = edgeList[i][0]
         val b = edgeList[i][1]
-        adjacencyMatrix[a][b] = 1
-        adjacencyMatrix[b][a] = 1
+        adjacencyList.getOrPut(a) { mutableListOf() }.add(b)
+        adjacencyList.getOrPut(b) { mutableListOf() }.add(a)
     }
 
-    printAdjacencyMatrix(n - 1, adjacencyMatrix)
+    printAdjacencyList(adjacencyList)
 }
 
-private fun printAdjacencyMatrix(n: Int, adjacencyMatrix: List<MutableList<Int>>) {
+private fun printAdjacencyList(adjacencyList: Map<Int, List<Int>>) {
 
     /**
      * Graph Representation
@@ -31,12 +30,10 @@ private fun printAdjacencyMatrix(n: Int, adjacencyMatrix: List<MutableList<Int>>
      * Node 4 => Neighbours : 2 3
      */
 
-    for (i in 1..n) {
+    for (i in 1..adjacencyList.size) {
         print("Node $i => Neighbours : ")
-        for (j in 1..n) {
-            if (adjacencyMatrix[i][j] == 1) {
-                print("$j ")
-            }
+        adjacencyList[i]?.forEach {
+            print("$it ")
         }
         println()
     }
