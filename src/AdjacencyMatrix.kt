@@ -14,6 +14,7 @@ fun main() {
         val a = edgeList[i][0]
         val b = edgeList[i][1]
         adjacencyMatrix[a][b] = 1
+        adjacencyMatrix[b][a] = 1
     }
 
     printAdjacencyMatrix(n - 1, adjacencyMatrix)
