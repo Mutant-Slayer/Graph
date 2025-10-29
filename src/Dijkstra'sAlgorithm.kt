@@ -13,6 +13,7 @@ fun main() {
 
     val distance = MutableList(adjacencyList.size) { Int.MAX_VALUE }
     val source = 2
+    val destination = 4
     algo(source, distance, adjacencyList)
 
     /**
@@ -24,6 +25,13 @@ fun main() {
     distance.forEach {
         print("$it ")
     }
+    println()
+
+    /**
+     * shortest distance between source and destination is 10
+     */
+
+    println("Shortest distance between $source and $destination is ${shortestPath(source, destination, adjacencyList)}")
 }
 
 private fun convertToAdjacencyList(
@@ -39,6 +47,10 @@ private fun convertToAdjacencyList(
         adjacencyList.getOrPut(b) { mutableListOf() }.add(Pair(a, weight))
     }
 }
+
+/**
+ * This one finds shortest path to all nodes
+ */
 
 private fun algo(source: Int, distance: MutableList<Int>, adjacencyList: MutableMap<Int, MutableList<Pair<Int, Int>>>) {
 
@@ -74,4 +86,38 @@ private fun algo(source: Int, distance: MutableList<Int>, adjacencyList: Mutable
             }
         }
     }
+}
+
+/**
+ * This one find the shortest path to a specific node
+ */
+
+private fun shortestPath(
+    source: Int,
+    destination: Int,
+    adjacencyList: MutableMap<Int, MutableList<Pair<Int, Int>>>,
+): Int {
+    val minHeap = PriorityQueue<Pair<Int, Int>>(compareBy { pair -> pair.second })
+    val visited = MutableList(adjacencyList.size) { -1 }
+
+    minHeap.add(Pair(source, 0))
+    var ans = Int.MAX_VALUE
+
+    while (minHeap.isNotEmpty()) {
+        val curr = minHeap.poll()
+        val element = curr.first
+        val distance = curr.second
+        visited[element] = 1
+
+        adjacencyList[element]?.forEach { neighbour ->
+            if (visited[neighbour.first] == -1) {
+                minHeap.add(Pair(neighbour.first, neighbour.second + distance))
+                if (neighbour.first == destination && ans > neighbour.second + distance) {
+                    ans = neighbour.second + distance
+                }
+            }
+        }
+    }
+
+    return ans
 }
