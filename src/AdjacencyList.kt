@@ -7,6 +7,11 @@ fun main() {
         listOf(1, 3)
     )
 
+//    size of edge list is m
+//    TC :  O(m)
+//
+//    space complexity : O(E+V)
+
     val adjacencyList = mutableMapOf<Int, MutableList<Int>>()
 
     for (i in 0 until edgeList.size) {
@@ -29,6 +34,9 @@ private fun printAdjacencyList(adjacencyList: Map<Int, List<Int>>) {
      * Node 3 => Neighbours : 1 2 4
      * Node 4 => Neighbours : 2 3
      */
+
+    // 1 node will run a for loop for n times
+    // TC: O(n2)
 
     for (i in 1..adjacencyList.size) {
         print("Node $i => Neighbours : ")

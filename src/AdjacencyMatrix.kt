@@ -10,6 +10,8 @@ fun main() {
 
     val adjacencyMatrix = List(n) { MutableList(n) { 0 } }
 
+    // space complexity = O(n2)
+
     for (i in 0 until edgeList.size) {
         val a = edgeList[i][0]
         val b = edgeList[i][1]
@@ -30,6 +32,8 @@ private fun printAdjacencyMatrix(n: Int, adjacencyMatrix: List<MutableList<Int>>
      * Node 3 => Neighbours : 1 2 4
      * Node 4 => Neighbours : 2 3
      */
+
+    // best and worst time complexity = O(n2)
 
     for (i in 1..n) {
         print("Node $i => Neighbours : ")
