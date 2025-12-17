@@ -76,10 +76,10 @@ private fun algo(
         val element = curr.first
         val weight = curr.second
 
-        adjacencyList[element]?.forEach {
-            if (distance[it.first].first > weight + it.second) {
-                distance[it.first] = Pair(weight + it.second, element)
-                pq.add(Pair(it.first, weight + it.second))
+        adjacencyList[element]?.forEach { neighbour ->
+            if (distance[neighbour.first].first > weight + neighbour.second) {
+                distance[neighbour.first] = Pair(weight + neighbour.second, element)
+                pq.add(Pair(neighbour.first, weight + neighbour.second))
             }
         }
     }
