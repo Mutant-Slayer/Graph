@@ -20,6 +20,8 @@ fun main() {
  * after we reach dead end, we come back and go to another path, in a recursive way
  * Instead of using stack we are using recursion, which works in a similar way, LIFO
  * for source node 0 answer will be [0 2 3 4 5 1]
+ *
+ * Point to be noted: This code only works for connected graphs
  */
 
 private fun dfsAlgo(
