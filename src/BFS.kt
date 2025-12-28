@@ -8,8 +8,9 @@ fun main() {
     )
     val adjacencyList = mutableMapOf<Int, MutableList<Int>>()
     convertToAdjacencyList(edgeList, adjacencyList)
+    val source = 2
 
-    bfsAlgo(adjacencyList, 0)
+    bfsAlgo(adjacencyList, source)
 }
 
 /***
